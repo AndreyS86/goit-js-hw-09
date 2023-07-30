@@ -41,3 +41,20 @@ async function processPromises(amount, delay) {
   }
 }
 
+async function runPromises() {
+  for (let i = 0; i < amount; i++) {
+    const position = i + 1;
+    try {
+      const result = await createPromise(position, currentDelay);
+      Notiflix.Notify.success(`✅ Fulfilled promise ${result.position} in ${result.delay}ms`);
+    } catch (error) {
+      Notiflix.Notify.failure(`❌ Rejected promise ${error.position} in ${error.delay}ms`);
+    }
+    currentDelay += delayStep;
+  }
+}
+
+runPromises();
+
+
+
